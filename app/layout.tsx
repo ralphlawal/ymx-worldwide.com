@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "../lib/content";
+import { ThemeSwitch } from "../components/theme-switch";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem("ymx-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}` }} /></head>
       <body>
         <a className="skip" href="#main">Skip to content</a>
         <header className="header">
@@ -22,6 +24,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </Link>
             <nav aria-label="Main navigation">
               <Link href="/artists">Artists</Link><Link href="/releases">Releases</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link>
+              <ThemeSwitch />
             </nav>
           </div>
         </header>
