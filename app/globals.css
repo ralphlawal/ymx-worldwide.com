@@ -346,3 +346,22 @@ nav a:hover, .footer a:hover, .text-link:hover { color: var(--light-hover, #ffdb
 .lcd .button {font-size:.8rem;}
 .lcd a:focus,.lcd button:focus {outline:2px solid #2466ac!important;outline-offset:-2px;}
 .footer.shell {max-width:560px; justify-content:center; align-items:center; text-align:center;}
+.click-wheel { touch-action:none; user-select:none; -webkit-user-select:none; }
+.wheel-preview {display:flex!important; gap:0;}
+.theme-switch { border-radius:50%; display:grid; place-items:center; width:44px; height:44px; padding:0; }
+.theme-switch svg {display:block; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round;}
+.sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
+.lcd .artist-grid,.lcd .release-grid { display:block; }
+.lcd .artist-card,.lcd .record-row { display:flex; align-items:center; gap:8px; border:none; border-bottom:1px solid #d1d1d1; padding:4px 7px; background:#fff; color:#151515; text-decoration:none; }
+.lcd .artist-card .portrait,.lcd .record-row img { width:38px;height:38px;object-fit:cover; flex:none; }
+.lcd .artist-card span,.lcd .record-row strong {font:700 14px/1.1 Arial,sans-serif;text-transform:none;}
+.lcd .artist-card span,.lcd .record-row span {flex:1;min-width:0;}
+.lcd .record-row small {display:block;font:12px/1.2 Arial,sans-serif;margin-top:2px;}
+.lcd .release-card {border:none;padding:0;}
+.lcd [data-wheel-selected="true"] {background:#2168ae!important;color:white!important;outline:0!important;}
+.lcd [data-wheel-selected="true"] svg {color:inherit;}
+.lcd .page-title {font-size:1.5rem;margin:6px 0;}
+.lcd .crate-tabs {gap:2px;}
+.lcd .crate-tabs button {min-height:25px;padding:2px 5px;}
+.lcd .crate-count {margin:6px 0;}
+.footer.shell {gap:8px 14px;padding-block:12px;}

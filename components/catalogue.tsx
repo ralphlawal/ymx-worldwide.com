@@ -1,7 +1,7 @@
 import { PlayerIcon } from "./player-icon";
 import Image from "next/image";
 import Link from "next/link";
-import { cover, displayDate, portrait, spotify, type Artist, type Release } from "../lib/content";
+import { cover, portrait, spotify, type Artist, type Release } from "../lib/content";
 
 export function SpotifyIcon() {
   return <Image src="/images/spotify.svg" alt="" width={21} height={21} unoptimized />;
@@ -42,15 +42,11 @@ export function ArtistGrid({ artists }: { artists: Artist[] }) {
 export function ReleaseGrid({ releases }: { releases: Release[] }) {
   return <div className="release-grid">{releases.map(release =>
     <article className="release-card" key={release.slug}>
-      <Cover release={release} />
-      <div className="release-card-meta">
-        <div>
-          <time className="eyebrow" dateTime={release.date}>{displayDate(release.date)}</time>
-          <h3><Link href={`/releases/${release.slug}`}>{release.title}</Link></h3>
-          <p>{release.credit}</p>
-        </div>
-        <a className="spotify-icon" href={spotify(release)} aria-label={`Open ${release.title} on Spotify`}><SpotifyIcon /></a>
-      </div>
+      <Link href={`/releases/${release.slug}`} className="record-row">
+        <Image src={cover(release)} alt="" width={40} height={40} unoptimized />
+        <span><strong>{release.title}</strong><small>{release.credit}</small></span>
+        <PlayerIcon name="arrow" />
+      </Link>
     </article>,
   )}</div>;
 }
