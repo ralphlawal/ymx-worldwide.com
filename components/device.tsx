@@ -23,9 +23,10 @@ export function Device({children, intro}: {children: React.ReactNode; intro: Rea
   useEffect(() => {
     const first = screen.current?.querySelector<HTMLElement>("a[href],button");
     if (first) highlight(first);
+    if (screen.current) screen.current.scrollTop = 0;
   }, [path]);
   function choices() {
-    return Array.from(screen.current?.querySelectorAll<HTMLElement>("a[href], button:not(:disabled), iframe") ?? [])
+    return Array.from(screen.current?.querySelectorAll<HTMLElement>("a[href], button:not(:disabled), p:not(:has(a,button)), small:not(a small,button small)") ?? [])
       .filter(el => el.getClientRects().length > 0);
   }
   function move(delta: number) {
@@ -34,6 +35,7 @@ export function Device({children, intro}: {children: React.ReactNode; intro: Rea
     const active = items.indexOf(selected.current!);
     const next = active < 0 ? (delta > 0 ? 0 : items.length - 1) : (active + delta + items.length) % items.length;
     highlight(items[next]);
+    if (items[next].matches("p,small")) items[next].tabIndex = -1;
     items[next].focus({preventScroll:true});
     items[next].scrollIntoView({block:"nearest"});
   }

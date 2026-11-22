@@ -380,9 +380,23 @@ nav a:hover, .footer a:hover, .text-link:hover { color: var(--light-hover, #ffdb
 .player-settings legend,.player-settings h2 {font:bold 15px Arial,sans-serif; padding:5px 0;}
 .player-settings button {display:flex; justify-content:space-between; width:100%; border:0; border-bottom:1px solid #ddd; background:white; color:#151515; padding:8px;}
 .player-settings p,.player-settings small {display:block;margin-top:8px;}
-@media(max-width:520px) {
- .device-stage {padding:0;display:flex;}
- .classic-device {width:100%;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:4vw 4vw max(12svh,32px);border-radius:0 0 22px 22px;}
- .lcd,.device-home {height:clamp(216px,calc(66vw - 26px),300px);}
- .click-wheel {width:62%;margin:28px auto 0;}
+
+.device-stage {
+  min-height:100svh;
+  padding:20px;
+  align-content:center;
 }
+.classic-device {
+  width:min(370px,100%);
+  aspect-ratio:370 / 592;
+  display:flex;
+  flex-direction:column;
+  padding:clamp(12px,4vw,18px) clamp(12px,4vw,18px) 0;
+}
+.glass { flex:none; height:44%; }
+.glass::after { content:""; position:absolute; inset:0; z-index:4; }
+.lcd { height:calc(100% - 26px); scrollbar-width:none; }
+.device-home { height:100%; }
+.click-wheel { width:64%; margin:auto; flex:none; }
+.lcd [data-wheel-selected="true"] {background:linear-gradient(#39adf2,#3178b6)!important;}
+.lcd .page-entry:has(.device-home) {height:100%;}
