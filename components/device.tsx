@@ -2,16 +2,17 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { speeds, readSpeed } from "../lib/wheel-speed";
 import { PlayerIcon } from "./player-icon";
 import { site } from "../lib/content";
 
-export function Device({children}: {children: React.ReactNode}) {
+export function Device({children, intro}: {children: React.ReactNode; intro: React.ReactNode}) {
   const path = usePathname();
   const router = useRouter();
   const screen = useRef<HTMLElement>(null);
   const selected = useRef<HTMLElement | null>(null);
   const wheel = useRef<HTMLDivElement>(null);
-  const drag = useRef<{ id: number; angle: number; accumulated: number } | null>(null);
+  const drag = useRef<{ id: number; angle: number; accumulated: number; threshold: number } | null>(null);
   const dragged = useRef(false);
   const parent = path.slice(0, path.lastIndexOf("/")) || "/";
   function highlight(el: HTMLElement) {
@@ -59,7 +60,7 @@ export function Device({children}: {children: React.ReactNode}) {
     } else if (event.key === "Escape") { event.preventDefault(); router.push(parent); }
     else if (event.key === " " && event.target instanceof HTMLElement && !event.target.closest("button")) { event.preventDefault(); play(); }
   }}>
-    <div className="glass"><div className="lcd-bar"><span>{path === "/" ? "YMX Worldwide" : path.split("/")[1].replace(/^./, c => c.toUpperCase())}</span><i aria-hidden="true" /></div>
+    <div className="glass">{intro}<div className="lcd-bar"><span>{path === "/" ? "YMX Worldwide" : path.split("/")[1].replace(/^./, c => c.toUpperCase())}</span><i aria-hidden="true" /></div>
       <main key={path} id="main" ref={screen} className="lcd" tabIndex={-1}
         onFocus={event => { if (event.target !== screen.current) highlight(event.target); }}>{children}</main>
     </div>
@@ -68,7 +69,7 @@ export function Device({children}: {children: React.ReactNode}) {
         if (!event.isPrimary || event.button !== 0) return;
         dragged.current = false;
         if ((event.target as Element).closest(".wheel-select")) return;
-        drag.current = { id:event.pointerId, angle:angle(event.clientX,event.clientY), accumulated:0 };
+        drag.current = { id:event.pointerId, angle:angle(event.clientX,event.clientY), accumulated:0, threshold:speeds[readSpeed()] };
       }}
       onPointerMove={event => {
         const g = drag.current;
@@ -76,11 +77,11 @@ export function Device({children}: {children: React.ReactNode}) {
         const current = angle(event.clientX,event.clientY);
         g.accumulated += Math.atan2(Math.sin(current-g.angle),Math.cos(current-g.angle));
         g.angle = current;
-        const steps = Math.trunc(g.accumulated / .44);
+        const steps = Math.trunc(g.accumulated / g.threshold);
         if (!steps) return;
         dragged.current = true;
         event.currentTarget.setPointerCapture(event.pointerId);
-        g.accumulated -= steps * .44;
+        g.accumulated -= steps * g.threshold;
         for (let i=0; i<Math.abs(steps); i++) move(Math.sign(steps));
       }}
       onPointerUp={() => { drag.current = null; }}
