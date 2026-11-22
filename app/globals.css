@@ -256,3 +256,21 @@ nav a:hover, .footer a:hover, .text-link:hover { color: var(--light-hover, #ffdb
 .portable { color-scheme: dark; --ink: #f4eee3; --muted: #c4b5a2; --gold: #e6bc77; --light-hover: #ffdb9b; color: var(--ink); }
 :focus-visible { outline-color: var(--gold) !important; }
 @media (max-width: 680px) { .header-inner nav { flex-wrap: wrap; align-items: center; } }
+
+.logo-intro {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  border: 0;
+  background: #100f0d;
+  color: #f4eee3;
+}
+.logo-intro[open] { display: grid; place-items: center; }
+.logo-intro::backdrop { background: transparent; }
+.logo-intro img { width: min(70vw, 300px); height: auto; }
+.logo-intro form { position: absolute; right: 20px; bottom: max(20px, env(safe-area-inset-bottom)); }
+.logo-intro button { background: transparent; border: 1px solid #766544; color: inherit; padding: 10px 16px; border-radius: 4px; }

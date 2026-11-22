@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "../lib/content";
 import { ThemeSwitch } from "../components/theme-switch";
+import { LogoIntro } from "../components/logo-intro";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" suppressHydrationWarning>
       <head><script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem("ymx-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}` }} /></head>
       <body>
+        <LogoIntro />
         <a className="skip" href="#main">Skip to content</a>
         <header className="header">
           <div className="shell header-inner">
