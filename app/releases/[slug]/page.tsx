@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Cover, ReleaseLinks } from "../../../components/catalogue";
+import { ReleasePreview } from "../../../components/spotify-preview";
 import { artists, displayDate, releases } from "../../../lib/content";
 import { pageMetadata } from "../../../lib/metadata";
 
@@ -32,6 +33,7 @@ export default async function ReleasePage({ params }: Props) {
         <h1 className="display detail-title">{release.title}</h1>
         <p className="credit">{release.credit}</p>
         <div className="actions"><ReleaseLinks release={release} /></div>
+        <ReleasePreview release={release} />
         <div className="artist-links">{related.map(artist =>
           <Link className="text-link" key={artist.slug} href={`/artists/${artist.slug}`}>{artist.name}</Link>,
         )}</div>
