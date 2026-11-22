@@ -24,7 +24,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </Link>
             <nav aria-label="Main navigation">
               <Link href="/artists">Artists</Link><Link href="/releases">Releases</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link>
-              <ThemeSwitch />
             </nav>
           </div>
         </header>
@@ -32,6 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <footer className="footer shell">
           <Link className="footer-name" href="/about">About YMX Worldwide</Link>
           <div><a href={site.instagram}>Instagram</a><a href={`mailto:${site.email}`}>{site.email}</a></div>
+          <ThemeSwitch />
         </footer>
       </body>
     </html>
