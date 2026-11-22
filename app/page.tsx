@@ -4,7 +4,7 @@ import { Console } from "../components/console";
 import { artists, releases, site } from "../lib/content";
 import { pageMetadata } from "../lib/metadata";
 
-export const metadata = pageMetadata(site.name, "Listen to the featured release and meet the artists of YMX Worldwide.", "/");
+export const metadata = pageMetadata(site.name, site.description, "/");
 
 export default function Home() {
   const selection = [...new Set([site.featured, ...site.consoleReleases])].map(slug => {
@@ -21,6 +21,13 @@ export default function Home() {
         <Link className="text-link" href="/artists">View roster</Link>
       </div>
       <ArtistGrid artists={artists} />
+    </section>
+    <section className="home-about" aria-labelledby="about-heading">
+      <h2 id="about-heading" className="display">About YMX</h2>
+      <div>
+        <p>{site.description}</p>
+        <Link className="text-link" href="/about">About YMX Worldwide</Link>
+      </div>
     </section>
   </>;
 }

@@ -7,6 +7,7 @@ const enquiries = [
   ["Booking", "Booking enquiry"],
   ["Press", "Press enquiry"],
   ["Collaborations", "Collaboration enquiry"],
+  ["Salon & beauty", "Salon and beauty enquiry"],
   ["General enquiries", "General enquiry"],
 ];
 

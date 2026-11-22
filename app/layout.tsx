@@ -18,17 +18,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <header className="header">
           <div className="shell header-inner">
             <Link className="wordmark" href="/">
-              <Image src="/images/medallion.png" width={54} height={54} alt="" preload />
-              <span>YMX <small>WORLDWIDE</small></span>
+              <Image src="/images/ymx.png" width={512} height={512} alt="YMX Worldwide" sizes="(max-width: 680px) 152px, 196px" preload />
             </Link>
             <nav aria-label="Main navigation">
-              <Link href="/artists">Artists</Link><Link href="/releases">Releases</Link><Link href="/contact">Contact</Link>
+              <Link href="/artists">Artists</Link><Link href="/releases">Releases</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link>
             </nav>
           </div>
         </header>
         <main className="shell main" id="main">{children}</main>
         <footer className="footer shell">
-          <Link className="footer-name" href="/">YMX Worldwide</Link>
+          <Link className="footer-name" href="/about">About YMX Worldwide</Link>
           <div><a href={site.instagram}>Instagram</a><a href={`mailto:${site.email}`}>{site.email}</a></div>
         </footer>
       </body>

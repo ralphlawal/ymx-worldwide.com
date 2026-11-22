@@ -16,14 +16,14 @@ export function Console({ releases }: { releases: Release[] }) {
   return (
     <section className="console" aria-label="Listening room">
       <div className="console-header">
-        <span className="console-label"><span className="lamp" aria-hidden="true" /> Listening room</span>
-        <span className="eyebrow">{index + 1} / {releases.length}</span>
+        <span className="console-label">Listening room</span>
+        <Link href="/releases">All releases</Link>
       </div>
       <div className="console-body">
-        <div className="art-bay"><Cover release={release} priority={index === 0} /></div>
+        <Cover release={release} priority={index === 0} />
         <div className="console-controls">
           <div aria-live="polite" aria-atomic="true">
-            <p className="eyebrow release-label">{index === 0 ? "Featured release" : "Selected release"} <span> / </span> <time dateTime={release.date}>{displayDate(release.date)}</time></p>
+            <p className="eyebrow release-label"><time dateTime={release.date}>{displayDate(release.date)}</time></p>
             <h1 className="display console-title">{release.title}</h1>
             <p className="credit">{release.credit}</p>
           </div>

@@ -8,6 +8,7 @@ const sections: Record<string, string> = {
   artists: "Artists",
   releases: "Releases",
   contact: "Contact",
+  about: "About YMX",
 };
 
 export const dynamic = "force-static";
