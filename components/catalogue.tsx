@@ -1,3 +1,4 @@
+import { PlayerIcon } from "./player-icon";
 import Image from "next/image";
 import Link from "next/link";
 import { cover, displayDate, portrait, spotify, type Artist, type Release } from "../lib/content";
@@ -33,7 +34,7 @@ export function ArtistGrid({ artists }: { artists: Artist[] }) {
   return <div className="artist-grid">{artists.map(artist =>
     <Link className="artist-card" key={artist.slug} href={`/artists/${artist.slug}`}>
       <Portrait artist={artist} />
-      <span>{artist.name}</span>
+      <span>{artist.name}<PlayerIcon name="arrow" /></span>
     </Link>,
   )}</div>;
 }

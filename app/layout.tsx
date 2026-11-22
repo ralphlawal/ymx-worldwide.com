@@ -34,6 +34,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Link className="footer-name" href="/about">About YMX Worldwide</Link>
           <div><a href={site.instagram}>Instagram</a><a href={`mailto:${site.email}`}>{site.email}</a></div>
           <ThemeSwitch />
+          <small className="copyright">© {new Date().getUTCFullYear()} YMX Worldwide</small>
         </footer>
       </body>
     </html>

@@ -272,5 +272,38 @@ nav a:hover, .footer a:hover, .text-link:hover { color: var(--light-hover, #ffdb
 .logo-intro[open] { display: grid; place-items: center; }
 .logo-intro::backdrop { background: transparent; }
 .logo-intro img { width: min(70vw, 300px); height: auto; }
-.logo-intro form { position: absolute; right: 20px; bottom: max(20px, env(safe-area-inset-bottom)); }
-.logo-intro button { background: transparent; border: 1px solid #766544; color: inherit; padding: 10px 16px; border-radius: 4px; }
+
+.memory-bank {
+  display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 3px;
+  margin-top: 14px; padding: 4px; background: #504435; border-radius: 8px;
+}
+.memory-bank button {
+  min-height: 44px; display: flex; align-items: center; justify-content: center;
+  gap: 7px; border: 1px solid #aa977a; border-bottom: 3px solid #73624a;
+  border-radius: 4px; background: #e2d5bd; color: #262019;
+  font: 700 .77rem/1.2 var(--mono);
+}
+.memory-bank button[aria-pressed="true"] { color: #fff3d5; background: #302a21; border-color: #242019; }
+.preset-light { width: 6px; height: 6px; border-radius: 50%; background: #796e5a; }
+[aria-pressed="true"] > .preset-light { background: #ffd47a; box-shadow: 0 0 5px #ffce7177; }
+.artist-card { overflow: hidden; }
+.artist-card span { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.artist-card svg { flex-shrink: 0; color: var(--gold); }
+.crate-tabs { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--line); gap: 3px; }
+.crate-tabs button { padding: 10px 14px; min-height: 44px; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-bottom: none; border-radius: 7px 7px 0 0; }
+.crate-tabs button[aria-pressed="true"] { background: var(--ink); color: var(--base); }
+.crate-count { margin: 14px 0 20px; color: var(--muted); font: .8rem var(--mono); }
+.copyright { flex-basis: 100%; font-size: .78rem; }
+@media (max-width: 520px) { .memory-bank { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes sleeve-in { from { opacity: .35; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+  .page-entry, .crate-results, .screen-track, .portable-screen .player, .device-menu { animation: sleeve-in 240ms ease-out both; }
+  .page-entry { animation-fill-mode: backwards; }
+  .artist-card svg, .artist-card .portrait, .release-card, .memory-bank button { transition: transform 180ms ease, border-color 180ms ease; }
+  .memory-bank button:active { transform: translateY(2px); }
+  @media (hover: hover) {
+    .artist-card:hover svg, .artist-card:focus-visible svg { transform: translateX(3px); }
+    .artist-card:hover .portrait { transform: scale(1.018); }
+    .release-card:hover, .release-card:focus-within { transform: translateY(-3px); border-color: var(--gold); }
+  }
+}

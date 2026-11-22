@@ -28,7 +28,6 @@ export function LogoIntro() {
   return <>
     <dialog id="ymx-intro" className="logo-intro" aria-label="YMX Worldwide intro" suppressHydrationWarning>
       <Image src="/images/ymx.png" width={512} height={512} sizes="300px" alt="YMX Worldwide" preload />
-      <form method="dialog"><button type="submit">Skip intro</button></form>
     </dialog>
     <script dangerouslySetInnerHTML={{ __html: startIntro }} />
   </>;
